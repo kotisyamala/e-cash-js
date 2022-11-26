@@ -1,7 +1,7 @@
 //Initializing the Bitcoin Core connection
 var bitcoin = require("bitcoin");
 //Bitcoin core server is running at 8332
-var clinet = new bitcoin.Client({
+var client = new bitcoin.Client({
     host:'localhost',
     port:8332,
     user:'satoshi',
@@ -9,9 +9,9 @@ var clinet = new bitcoin.Client({
 });
 
 var previousBalance = 0;
-
+client.getBlockchainInfo().then((help) => console.log(help));
 function ecash(){
-    clinet.getBalance('*',0,function(err,balance){
+    client.getBalance('*',0,function(err,balance){
         if(err){
             console.log(err);
         }else if(balance > previousBalance){
